@@ -1,4 +1,4 @@
-# asty Home
+# Tasty Home
 
 ## Présentation
 
