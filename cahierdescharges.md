@@ -4,7 +4,7 @@
 
 **Tasty Home** est une application web d'**entraide entre étudiants de la région vaudoise (qui pourrait s’étendre avec le temps vers d’autres cantons)**. Les étudiants qui cuisinent peuvent **donner gratuitement** des plats faits maison à d'autres étudiants.
 
-**Écoles concernées :** HEIG-VD, EPFL, UNIL, HES vaudoises. (pour l’instant)
+**Écoles concernées :** HEIG-VD, EPFL, UNIL. (pour l’instant)
 
 **Objectifs**
 
@@ -67,6 +67,16 @@ Un compte est **obligatoire**. L'inscription est **réservée aux étudiants** :
 
 Chaque page comporte un en-tête avec le logo, un bouton « + » pour donner un plat, la photo de profil et la déconnexion.
 
+
+
+## Maquette de l'interface utilisateur
+ 
+Les maquettes de Tasty Home ont été réalisées sur Figma, afin de représenter à quoi ressemblera l'application une fois développée.
+
+🔗 [Voir la maquette Figma](https://www.figma.com/proto/66FsDMIGSmIpa3aOW5xI50/Maquette-tasty?node-id=3-832&p=f&t=Z4feNpWUvszfQAGQ-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1)
+ 
 ## Utilisation de l’IA
 
 IA utilisée pour la mise en page du cahier des charges.
+
+
