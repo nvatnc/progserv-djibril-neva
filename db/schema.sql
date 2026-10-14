@@ -1,3 +1,5 @@
+USE my_database;
+
 CREATE TABLE ecoles (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     nom_ecole VARCHAR(100) NOT NULL UNIQUE
