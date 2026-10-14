@@ -1,21 +1,31 @@
 <?php
-const DB_HOST = 'mariadb';
-const DB_PORT = 3306;
-const DB_NAME = 'my_database';
-const DB_USER = 'username';
-const DB_PASSWORD = 'password';
+const DATABASE_CONFIGURATION_FILE = __DIR__ . '/../config/database.ini';
 
-$dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=utf8mb4";
+// Lecture du fichier de configuration
+// Documentation : https://www.php.net/manual/fr/function.parse-ini-file.php
+$config = parse_ini_file(DATABASE_CONFIGURATION_FILE, true);
 
-$pdo = new PDO($dsn, DB_USER, DB_PASSWORD);
+if (!$config) {
+    throw new Exception("Erreur lors de la lecture du fichier de configuration : " . DATABASE_CONFIGURATION_FILE);
+}
 
-$sql = "SELECT * FROM my_table";
+$host = $config['host'];
+$port = $config['port'];
+$database = $config['database'];
+$username = $config['username'];
+$password = $config['password'];
+
+// Connexion à la base de données
+$pdo = new PDO("mysql:host=$host;port=$port;dbname=$database;charset=utf8mb4", $username, $password);
+
+// Récupération de toutes les catégories
+$sql = "SELECT * FROM categories";
 
 $stmt = $pdo->prepare($sql);
 
 $stmt->execute();
 
-$results = $stmt->fetchAll();
+$categories = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -24,26 +34,25 @@ $results = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProgServ2 Course PHP Template</title>
+    <title>Nom du site à définir</title>
 </head>
 
 <body>
-    <h1>ProgServ2 Course PHP Template</h1>
+    <h1>Nom du site à définir</h1>
 
-    <p>Bienvenue dans votre projet PHP pour le cours ProgServ2 à la HEIG-VD !</p>
+    <p>Le site est en ligne et connecté à la base de données.</p>
 
-    <h2>Résultats de la base de données :</h2>
+    <h2>Catégories</h2>
 
     <ul>
-        <?php foreach ($results as $row) { ?>
-            <li>ID: <?= htmlspecialchars($row['id']) ?>
-                <ul>
-                    <li>Column1: <?= htmlspecialchars($row['column1']) ?></li>
-                    <li>Column2: <?= htmlspecialchars($row['column2']) ?></li>
-                </ul>
-            </li>
+        <?php foreach ($categories as $categorie) { ?>
+            <li><?= htmlspecialchars($categorie['nom']) ?></li>
         <?php } ?>
     </ul>
+
+    <footer>
+        <p>Projet réalisé dans le cadre du cours ProgServ2 à la HEIG-VD.</p>
+    </footer>
 </body>
 
 </html>
