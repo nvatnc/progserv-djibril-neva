@@ -1,6 +1,4 @@
--- =========================================================
--- Tasty Home : données de test (MySQL)
---
+
 -- ATTENTION : les utilisateurs, plats et associations
 -- plats/étiquettes de ce fichier sont des DONNÉES FICTIVES
 -- générées par une IA (Claude), uniquement pour tester
@@ -8,35 +6,22 @@
 -- Les personnes, emails et numéros de téléphone n'existent pas.
 -- Dans l'application, les vrais utilisateurs s'inscrivent
 -- et publient leurs plats via les formulaires.
---
--- À exécuter APRÈS les CREATE TABLE
--- L'ordre des INSERT respecte les clés étrangères
--- =========================================================
 
 
--- ---------------------------------------------------------
--- 1. ECOLES (aucune FK)
--- ---------------------------------------------------------
+
 INSERT INTO ecoles (nom_ecole) VALUES
   ('EPFL'),
   ('UNIL'),
   ('HEIG-VD');
 
 
--- ---------------------------------------------------------
--- 2. CATEGORIES (aucune FK)
--- Correspondent aux deux familles de filtres du cahier des charges
--- ---------------------------------------------------------
+
 INSERT INTO categories (nom_de_la_categorie) VALUES
   ('Type de plat'),
   ('Ingrédients');
 
 
--- ---------------------------------------------------------
--- 3. ETIQUETTES (FK -> categories)
--- Ingrédients : si le plat a l'étiquette, il CONTIENT l'ingrédient.
--- Sans l'étiquette, il n'en contient pas (ex. pas d'étiquette Gluten = sans gluten).
--- ---------------------------------------------------------
+
 INSERT INTO etiquettes (nom_etiquette, id_categorie) VALUES
   ('Boeuf',      (SELECT id FROM categories WHERE nom_de_la_categorie = 'Type de plat')),
   ('Poulet',     (SELECT id FROM categories WHERE nom_de_la_categorie = 'Type de plat')),
@@ -52,12 +37,7 @@ INSERT INTO etiquettes (nom_etiquette, id_categorie) VALUES
   ('Féculents',  (SELECT id FROM categories WHERE nom_de_la_categorie = 'Ingrédients'));
 
 
--- ---------------------------------------------------------
--- 4. UTILISATEURS (FK -> ecoles) — DONNÉES FICTIVES (IA)
--- Emails avec le domaine de l'école, comme l'exige l'inscription.
--- Les mots de passe sont des exemples : dans l'appli,
--- ils seront hashés avec password_hash() en PHP.
--- ---------------------------------------------------------
+
 INSERT INTO utilisateurs (prenom, nom, email, mot_de_passe, photo_de_profil, numero_de_telephone, id_ecole) VALUES
   ('Léa',    'Martin', 'lea.martin@heig-vd.ch',    'hash_a_remplacer', 'uploads/profils/lea.jpg',    '0791112233', (SELECT id FROM ecoles WHERE nom_ecole = 'HEIG-VD')),
   ('Yanis',  'Benali', 'yanis.benali@unil.ch',     'hash_a_remplacer', 'uploads/profils/yanis.jpg',  '0782223344', (SELECT id FROM ecoles WHERE nom_ecole = 'UNIL')),
@@ -65,11 +45,7 @@ INSERT INTO utilisateurs (prenom, nom, email, mot_de_passe, photo_de_profil, num
   ('Moussa', 'Diallo', 'moussa.diallo@heig-vd.ch', 'hash_a_remplacer', 'uploads/profils/moussa.jpg', '0774445566', (SELECT id FROM ecoles WHERE nom_ecole = 'HEIG-VD'));
 
 
--- ---------------------------------------------------------
--- 5. PLATS (FK -> utilisateurs) — DONNÉES FICTIVES (IA)
--- Dates sur une semaine (lundi 19 -> dimanche 25 octobre 2026)
--- pour tester les 7 onglets. Le dernier plat n'a pas de photo (NULL).
--- ---------------------------------------------------------
+
 INSERT INTO plats (nom_du_plat, description, photo_du_plat, nombre_de_portion, date_de_disponibilite, id_utilisateur) VALUES
   ('Poulet yassa',          'Poulet mariné au citron et aux oignons, servi avec du riz blanc.', 'uploads/plats/yassa.jpg',     4, '2026-10-19', (SELECT id FROM utilisateurs WHERE email = 'moussa.diallo@heig-vd.ch')),
   ('Lasagnes maison',       'Lasagnes au bœuf et à la sauce tomate, gratinées au fromage.',     'uploads/plats/lasagnes.jpg',  6, '2026-10-20', (SELECT id FROM utilisateurs WHERE email = 'sofia.rossi@epfl.ch')),
@@ -80,10 +56,7 @@ INSERT INTO plats (nom_du_plat, description, photo_du_plat, nombre_de_portion, d
   ('Salade quinoa vegan',   'Quinoa, avocat, pois chiches et vinaigrette au citron.',           NULL,                          3, '2026-10-25', (SELECT id FROM utilisateurs WHERE email = 'lea.martin@heig-vd.ch'));
 
 
--- ---------------------------------------------------------
--- 6. PLATS_ETIQUETTES (FK -> plats et etiquettes) — DONNÉES FICTIVES (IA)
--- Chaque plat : 1 type de plat + les ingrédients qu'il contient
--- ---------------------------------------------------------
+
 INSERT INTO plats_etiquettes (id_plat, id_etiquette) VALUES
   -- Poulet yassa : Poulet, Légumes, Féculents (riz)
   ((SELECT id FROM plats WHERE nom_du_plat = 'Poulet yassa'),        (SELECT id FROM etiquettes WHERE nom_etiquette = 'Poulet')),
