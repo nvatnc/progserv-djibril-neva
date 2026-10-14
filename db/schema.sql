@@ -2,7 +2,7 @@ CREATE TABLE ecoles (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     nom_ecole VARCHAR(100) NOT NULL UNIQUE
 );
- 
+
 CREATE TABLE utilisateurs (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     prenom VARCHAR(100) NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE utilisateurs (
     id_ecole INTEGER NOT NULL,
     FOREIGN KEY (id_ecole) REFERENCES ecoles(id)
 );
- 
+
 CREATE TABLE plats (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     nom_du_plat VARCHAR(100) NOT NULL,
@@ -25,19 +25,19 @@ CREATE TABLE plats (
     id_utilisateur INTEGER NOT NULL,
     FOREIGN KEY (id_utilisateur) REFERENCES utilisateurs(id)
 );
- 
+
 CREATE TABLE categories (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     nom_de_la_categorie VARCHAR(100) NOT NULL UNIQUE
 );
- 
+
 CREATE TABLE etiquettes (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     nom_etiquette VARCHAR(100) NOT NULL UNIQUE,
     id_categorie INTEGER NOT NULL,
     FOREIGN KEY (id_categorie) REFERENCES categories(id)
 );
- 
+
 CREATE TABLE plats_etiquettes (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     id_plat INTEGER NOT NULL,
