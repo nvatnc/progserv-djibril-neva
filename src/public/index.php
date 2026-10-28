@@ -16,16 +16,15 @@ $username = $config['username'];
 $password = $config['password'];
 
 // Connexion à la base de données
-$pdo = new PDO("mysql:host=$host;port=$port;dbname=$database;charset=utf8mb4", $username, $password);
-
-// Récupération de toutes les catégories
-$sql = "SELECT * FROM categories";
-
-$stmt = $pdo->prepare($sql);
-
-$stmt->execute();
-
-$categories = $stmt->fetchAll();
+$pdo = new PDO(
+    "mysql:host=$host;port=$port;dbname=$database;charset=utf8mb4",
+    $username,
+    $password,
+    [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    ]
+);
 ?>
 
 <!DOCTYPE html>
@@ -34,25 +33,62 @@ $categories = $stmt->fetchAll();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nom du site à définir</title>
+    <title>Tasty Home</title>
+
+    <!-- Police Inter (comme sur la maquette) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
 <body>
-    <h1>Nom du site à définir</h1>
 
-    <p>Le site est en ligne et connecté à la base de données.</p>
+    <!-- En-tête commun à toutes les pages -->
+    <header class="entete">
+        <a href="/" class="entete-logo">Tasty Home</a>
 
-    <h2>Catégories</h2>
+        <nav class="entete-menu">
+            <a href="/plats.php">Plats</a>
+            <a href="/profil.php">Mon profil</a>
+            <a href="/connexion.php">Connexion</a>
+        </nav>
+    </header>
 
-    <ul>
-        <?php foreach ($categories as $categorie) { ?>
-            <li><?= htmlspecialchars($categorie['nom_de_la_categorie']) ?></li>
-        <?php } ?>
-    </ul>
+    <main class="accueil">
 
-    <footer>
-        <p>Projet réalisé dans le cadre du cours ProgServ2 à la HEIG-VD.</p>
-    </footer>
+        <!-- Colonne de gauche : texte -->
+        <section class="accueil-texte">
+            <p class="sur-titre">HEIG-VD · EPFL · UNIL</p>
+
+            <h1 class="accueil-titre">
+                Cuisine<br>
+                <span class="rouge">Donne</span><br>
+                Partage
+            </h1>
+
+            <hr class="separateur">
+
+            <p class="accueil-intro">
+                L'entraide alimentaire entre étudiant·e·s<br>
+                des hautes écoles vaudoises. Gratuit.<br>
+                Fait maison. Entre pairs.
+            </p>
+
+            <div class="boutons">
+                <a href="/plats.php" class="bouton bouton-plein">Je veux un plat</a>
+                <a href="/plat-ajout.php" class="bouton bouton-contour">Je donne un plat</a>
+            </div>
+        </section>
+
+        <!-- Colonne de droite : photo -->
+        <div class="accueil-photo">
+            <img src="/assets/img/src/public/assets/img/tommao-wang-tWiqmA9D-v4-unsplash.jpg" alt="Salade de légumes frais">
+        </div>
+
+    </main>
+
 </body>
 
 </html>

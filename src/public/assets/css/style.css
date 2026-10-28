@@ -1,0 +1,214 @@
+/* =========================================================
+   TASTY HOME — styles communs
+   ========================================================= */
+ 
+/* ----- Couleurs et police de la maquette ----- */
+:root {
+    --beige: #f1e8d0;
+    --noir: #111111;
+    --rouge: #e8352b;
+    --gris: #6b6b6b;
+    --gris-clair: #9a9a9a;
+    --blanc: #ffffff;
+    --bordure: 1px solid var(--noir);
+    --police: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --marge: 40px;
+}
+ 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+ 
+body {
+    font-family: var(--police);
+    color: var(--noir);
+    background: var(--beige);
+}
+ 
+a {
+    color: inherit;
+    text-decoration: none;
+}
+ 
+img {
+    display: block;
+    max-width: 100%;
+}
+ 
+.rouge {
+    color: var(--rouge);
+}
+ 
+/* ----- En-tête (commun à toutes les pages) ----- */
+.entete {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 56px;
+    padding: 0 var(--marge);
+    border-bottom: var(--bordure);
+}
+ 
+.entete-logo {
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+ 
+.entete-menu {
+    display: flex;
+    gap: 36px;
+}
+ 
+.entete-menu a {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+ 
+/* Lien de la page actuelle : gras + souligné */
+.entete-menu a:hover,
+.entete-menu a.actif {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+ 
+/* ----- Petits textes en capitales ----- */
+.sur-titre {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gris);
+}
+ 
+/* ----- Boutons (communs) ----- */
+.boutons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+ 
+.bouton {
+    display: inline-block;
+    padding: 16px 28px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 2px solid var(--noir);
+    transition: background 0.15s, color 0.15s;
+}
+ 
+.bouton-plein {
+    background: var(--noir);
+    color: var(--blanc);
+}
+ 
+.bouton-plein:hover {
+    background: var(--rouge);
+    border-color: var(--rouge);
+}
+ 
+.bouton-contour {
+    background: transparent;
+}
+ 
+.bouton-contour:hover {
+    background: var(--noir);
+    color: var(--blanc);
+}
+ 
+/* =========================================================
+   PAGE D'ACCUEIL
+   ========================================================= */
+.accueil {
+    display: grid;
+    grid-template-columns: 64fr 36fr;
+    min-height: calc(100vh - 57px);
+}
+ 
+.accueil-texte {
+    padding: 80px var(--marge) 60px;
+}
+ 
+.accueil-titre {
+    margin-top: 40px;
+    font-size: clamp(4rem, 13vw, 11rem);
+    font-weight: 900;
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+}
+ 
+.separateur {
+    margin: 48px 0 28px;
+    border: none;
+    border-top: var(--bordure);
+}
+ 
+.accueil-intro {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--gris);
+    margin-bottom: 24px;
+}
+ 
+.accueil-photo {
+    border-left: var(--bordure);
+    overflow: hidden;
+    background: #d9cfb4; /* couleur de secours si l'image manque */
+}
+ 
+.accueil-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+ 
+/* ----- Tablette et téléphone ----- */
+@media (max-width: 900px) {
+    :root {
+        --marge: 20px;
+    }
+ 
+    .entete-menu {
+        gap: 16px;
+    }
+ 
+    .accueil {
+        grid-template-columns: 1fr;
+    }
+ 
+    .accueil-texte {
+        padding-top: 48px;
+    }
+ 
+    .accueil-photo {
+        height: 320px;
+        border-left: none;
+        border-top: var(--bordure);
+    }
+}
+ 
+@media (max-width: 500px) {
+    .entete-logo {
+        font-size: 12px;
+    }
+ 
+    .entete-menu a {
+        font-size: 10px;
+        letter-spacing: 0.06em;
+    }
+ 
+    .boutons {
+        flex-direction: column;
+    }
+ 
+    .bouton {
+        text-align: center;
+    }
+}
