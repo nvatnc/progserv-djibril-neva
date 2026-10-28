@@ -46,7 +46,7 @@ $categories = $stmt->fetchAll();
 
     <ul>
         <?php foreach ($categories as $categorie) { ?>
-            <li><?= htmlspecialchars($categorie['nom']) ?></li>
+            <li><?= htmlspecialchars($categorie['nom_de_la_categorie']) ?></li>
         <?php } ?>
     </ul>
 
