@@ -169,6 +169,214 @@ img {
     object-fit: cover;
 }
  
+/* =========================================================
+   PAGE PLATS DISPONIBLES
+   ========================================================= */
+.page-titre {
+    padding: 60px var(--marge) 30px;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+}
+
+/* ----- Onglets des jours ----- */
+.jours {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    border-top: var(--bordure);
+    border-bottom: var(--bordure);
+}
+
+.jours a {
+    padding: 14px 6px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-left: var(--bordure);
+}
+
+.jours a:first-child {
+    border-left: none;
+}
+
+.jours a:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.jours a.actif {
+    background: var(--noir);
+    color: var(--blanc);
+}
+
+/* ----- Filtres ----- */
+.filtres {
+    border-bottom: var(--bordure);
+}
+
+.filtres summary {
+    padding: 14px var(--marge);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    list-style: none;
+}
+
+.filtres summary::-webkit-details-marker {
+    display: none;
+}
+
+.filtres summary::after {
+    content: "  ↓";
+}
+
+.filtres[open] summary::after {
+    content: "  ↑";
+}
+
+.filtres-contenu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px 32px;
+    padding: 20px var(--marge) 28px;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.filtres-groupe {
+    border: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.filtres-groupe legend {
+    margin-bottom: 10px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.filtres-boutons {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.filtres-boutons .bouton {
+    padding: 10px 18px;
+    font-size: 11px;
+    cursor: pointer;
+    font-family: var(--police);
+}
+
+/* Une étiquette cliquable : la vraie case est cachée, le cadre change de couleur */
+.tag input {
+    position: absolute;
+    opacity: 0;
+}
+
+.tag span {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 12px;
+    border: var(--bordure);
+    cursor: pointer;
+}
+
+.tag input:checked + span {
+    background: var(--noir);
+    color: var(--blanc);
+}
+
+.tag input:focus-visible + span {
+    outline: 2px solid var(--rouge);
+}
+
+/* ----- Cartes des plats ----- */
+.grille-plats {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    margin: 36px var(--marge) 60px;
+    border-left: var(--bordure);
+    border-top: var(--bordure);
+}
+
+.carte-plat {
+    display: flex;
+    flex-direction: column;
+    background: var(--blanc);
+    border-right: var(--bordure);
+    border-bottom: var(--bordure);
+}
+
+.carte-photo {
+    width: 100%;
+    aspect-ratio: 6 / 5;
+    object-fit: cover;
+    border-bottom: var(--bordure);
+}
+
+.carte-photo-vide {
+    background: #d9cfb4;
+}
+
+.carte-infos {
+    padding: 22px 20px 24px;
+}
+
+.carte-nom {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.carte-plat:hover .carte-nom {
+    text-decoration: underline;
+}
+
+.carte-bas {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 11px;
+}
+
+.carte-meta {
+    color: var(--gris-clair);
+}
+
+.carte-portions {
+    font-weight: 700;
+    color: var(--gris);
+    white-space: nowrap;
+}
+
+/* ----- Aucun plat ----- */
+.aucun-plat {
+    padding: 130px var(--marge);
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+    color: #d9cfb4;
+}
+
+/* ----- Téléphone : onglets des jours défilables ----- */
+@media (max-width: 700px) {
+    .jours {
+        display: flex;
+        overflow-x: auto;
+    }
+
+    .jours a {
+        flex: 0 0 auto;
+        padding: 14px 16px;
+    }
+}
+
 /* ----- Tablette et téléphone ----- */
 @media (max-width: 900px) {
     :root {

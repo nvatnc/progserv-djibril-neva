@@ -1,66 +1,23 @@
 <?php
-const DATABASE_CONFIGURATION_FILE = __DIR__ . '/../config/database.ini';
+require __DIR__ . '/../includes/bootstrap.php';
 
-// Lecture du fichier de configuration
-// Documentation : https://www.php.net/manual/fr/function.parse-ini-file.php
-$config = parse_ini_file(DATABASE_CONFIGURATION_FILE, true);
+$ecoleManager = new EcoleManager();
+$ecoles = $ecoleManager->trouverToutes();
 
-if (!$config) {
-    throw new Exception("Erreur lors de la lecture du fichier de configuration : " . DATABASE_CONFIGURATION_FILE);
-}
-
-$host = $config['host'];
-$port = $config['port'];
-$database = $config['database'];
-$username = $config['username'];
-$password = $config['password'];
-
-// Connexion à la base de données
-$pdo = new PDO(
-    "mysql:host=$host;port=$port;dbname=$database;charset=utf8mb4",
-    $username,
-    $password,
-    [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    ]
-);
+$titre = 'Tasty Home';
+$pageActive = '';
+require __DIR__ . '/../includes/header.php';
 ?>
-
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasty Home</title>
-
-    <!-- Police Inter (comme sur la maquette) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="/assets/css/style.css">
-</head>
-
-<body>
-
-    <!-- En-tête commun à toutes les pages -->
-    <header class="entete">
-        <a href="/" class="entete-logo">Tasty Home</a>
-
-        <nav class="entete-menu">
-            <a href="/plats.php">Plats</a>
-            <a href="/profil.php">Mon profil</a>
-            <a href="/connexion.php">Connexion</a>
-        </nav>
-    </header>
 
     <main class="accueil">
 
         <!-- Colonne de gauche : texte -->
         <section class="accueil-texte">
-            <p class="sur-titre">HEIG-VD · EPFL · UNIL</p>
+            <p class="sur-titre">
+                <?php foreach ($ecoles as $i => $ecole) { ?>
+                    <?= $i > 0 ? ' · ' : '' ?><?= htmlspecialchars($ecole->getNom()) ?>
+                <?php } ?>
+            </p>
 
             <h1 class="accueil-titre">
                 Cuisine<br>
@@ -84,11 +41,9 @@ $pdo = new PDO(
 
         <!-- Colonne de droite : photo -->
         <div class="accueil-photo">
-            <img src="/assets/img/src/public/assets/img/tommao-wang-tWiqmA9D-v4-unsplash.jpg" alt="Salade de légumes frais">
+            <img src="/assets/img/accueil.jpg" alt="Assiette de pâtes maison">
         </div>
 
     </main>
 
-</body>
-
-</html>
+<?php require __DIR__ . '/../includes/footer.php'; ?>
