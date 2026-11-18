@@ -377,6 +377,73 @@ img {
     }
 }
 
+/* =========================================================
+   FORMULAIRES (inscription, connexion, ajout de plat)
+   ========================================================= */
+.formulaire {
+    max-width: 560px;
+    padding: 20px var(--marge) 80px;
+}
+
+.formulaire form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.champ {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.champ label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gris);
+}
+
+.champ input,
+.champ select {
+    padding: 10px 2px;
+    font-family: var(--police);
+    font-size: 15px;
+    color: var(--noir);
+    background: transparent;
+    border: none;
+    border-bottom: var(--bordure);
+    border-radius: 0;
+}
+
+.champ input:focus,
+.champ select:focus {
+    outline: none;
+    border-bottom-width: 2px;
+}
+
+.formulaire .bouton {
+    align-self: flex-start;
+    font-family: var(--police);
+    cursor: pointer;
+}
+
+.message {
+    margin-bottom: 24px;
+    padding: 14px 18px;
+    font-size: 14px;
+    line-height: 1.6;
+    list-style: none;
+    background: var(--blanc);
+    border: var(--bordure);
+}
+
+.message-erreur {
+    color: var(--rouge);
+    border-color: var(--rouge);
+}
+
 /* ----- Tablette et téléphone ----- */
 @media (max-width: 900px) {
     :root {
