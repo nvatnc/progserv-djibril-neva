@@ -31,6 +31,10 @@ $pageActive = $pageActive ?? '';
         <nav class="entete-menu">
             <a href="/plats.php" class="<?= $pageActive === 'plats' ? 'actif' : '' ?>">Plats</a>
             <a href="/profil.php" class="<?= $pageActive === 'profil' ? 'actif' : '' ?>">Mon profil</a>
-            <a href="/connexion.php" class="<?= $pageActive === 'connexion' ? 'actif' : '' ?>">Connexion</a>
+            <span class="entete-compte">
+                <a href="/connexion.php" class="<?= $pageActive === 'connexion' ? 'actif' : '' ?>">Connexion</a>
+                <span class="entete-barre">/</span>
+                <a href="/inscription.php" class="<?= $pageActive === 'inscription' ? 'actif' : '' ?>">Inscription</a>
+            </span>
         </nav>
     </header>

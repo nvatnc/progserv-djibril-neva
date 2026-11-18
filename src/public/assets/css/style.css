@@ -77,6 +77,18 @@ img {
     text-underline-offset: 4px;
 }
  
+/* Connexion / Inscription regroupés */
+.entete-compte {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.entete-barre {
+    font-size: 12px;
+    color: var(--gris-clair);
+}
+
 /* ----- Petits textes en capitales ----- */
 .sur-titre {
     font-size: 11px;

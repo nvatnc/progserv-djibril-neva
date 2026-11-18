@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $titre = "Inscription – Tasty Home";
-$pageActive = "connexion";
+$pageActive = "inscription";
 require __DIR__ . '/../includes/header.php';
 ?>
 
@@ -142,7 +142,7 @@ require __DIR__ . '/../includes/header.php';
                         <select id="ecole" name="ecole" required>
                             <option value="">-- Choisis ton école --</option>
                             <?php foreach ($ecoles as $ecole) { ?>
-                                <option value="<?= $ecole->getId() ?>" <?php if ($ecole->getId() == $idEcole) { echo "selected"; } ?>>
+                                <option value="<?= $ecole->getId() ?>" <?php if ($ecole->getId() == $idEcole) { ?>selected<?php } ?>>
                                     <?= htmlspecialchars($ecole->getNom()) ?>
                                 </option>
                             <?php } ?>
